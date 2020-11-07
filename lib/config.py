@@ -196,6 +196,25 @@ BANDIT_IGNORED_RULES = (
     "B101,B102,B105,B307,B308,B310,B322,B404,B601,B602,B603,B604,B605,B701,B702,B703"
 )
 
+# Emoji for github/gitlab/bitbucket, for use in the status field in the summary report for e.g. PR comments
+# See:
+#   https://www.webfx.com/tools/emoji-cheat-sheet/ (gitlab)
+#   https://gist.github.com/rxaviers/7360908
+#   https://bitbucket.org/gdwiy/bitbucket-emoji-list/wiki/Home
+pr_status_emoji = {
+    "github": {
+        "success": ":white_check_mark:",
+        "failure": ":x:",
+    },
+    "gitlab": {
+        "success": ":white_check_mark:",
+        "failure": ":x:",
+    },
+    "bitbucket": {
+        "success": ":white_check_mark:",
+        "failure": ":cross_mark:",
+    },
+}
 
 def get(configName, default_value=None):
     """Method to retrieve a config given a name. This method lazy loads configuration

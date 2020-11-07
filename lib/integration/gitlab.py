@@ -88,7 +88,8 @@ class GitLab(GitProvider):
                     summary + "| ---- | ------- | ------ | ----- | ---- | ---- |\n"
                 )
                 for rk, rv in report_summary.items():
-                    summary = f'{summary}| {rv.get("tool")} | {rv.get("critical")} | {rv.get("high")} | {rv.get("medium")} | {rv.get("low")} | {rv.get("status")} |\n'
+                    pr_status = config.get("pr_status_emoji").get("gitlab").get(rv.get("status"))
+                    summary = f'{summary}| {rv.get("tool")} | {rv.get("critical")} | {rv.get("high")} | {rv.get("medium")} | {rv.get("low")} | {pr_status} |\n'
                 template = config.get("PR_COMMENT_TEMPLATE")
                 recommendation = (
                     f"Please review the [scan reports]({gitlab_context.get('jobUrl')}/artifacts/browse/reports) before approving this merge request."
