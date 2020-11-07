@@ -81,7 +81,8 @@ class Bitbucket(GitProvider):
                         summary + "| ---- | ------- | ------ | ----- | ---- | ---- |\n"
                     )
                     for rk, rv in report_summary.items():
-                        summary = f'{summary}| {rv.get("tool")} | {rv.get("critical")} | {rv.get("high")} | {rv.get("medium")} | {rv.get("low")} | {rv.get("status")} |\n'
+                        pr_status = config.pr_status_emoji.get("bitbucket").get(rv.get("status"))
+                        summary = f'{summary}| {rv.get("tool")} | {rv.get("critical")} | {rv.get("high")} | {rv.get("medium")} | {rv.get("low")} | {pr_status} |\n'
                     template = config.get("PR_COMMENT_BASIC_TEMPLATE")
                     recommendation = (
                         f"Please review the scan reports before approving this pull request for {context.get('prTargetBranch')} branch"

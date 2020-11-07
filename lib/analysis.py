@@ -111,6 +111,7 @@ def summary(sarif_files, depscan_files=None, aggregate_file=None, override_rules
                     "medium": metrics["medium"],
                     "low": metrics["low"],
                     "status": ":white_heavy_check_mark:",
+                    "pr_status": "success",
                 }
                 report_summary[dep_type].pop("total", None)
                 # Compare against the build break rule to determine status
@@ -148,6 +149,7 @@ def summary(sarif_files, depscan_files=None, aggregate_file=None, override_rules
                     if build_break_rules.get("max_" + rsev) is not None:
                         if metrics.get(rsev) > build_break_rules["max_" + rsev]:
                             report_summary[dep_type]["status"] = ":cross_mark:"
+                            report_summary[dep_type]["pr_status"] = "failure"
                             build_status = "fail"
 
     for sf in sarif_files:
